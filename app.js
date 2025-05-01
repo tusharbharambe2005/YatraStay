@@ -32,9 +32,9 @@ app.get("/", (req, res) => {
 });
 
 //index router
-app.get("/listings", async (req, res) => {
+app.get('/listings', async (req, res) => {
     const allListings = await Listing.find({});
-    res.render("listings/index", { allListings });
+    res.render('listings/index', { allListings });
 });
 
 //New Router
@@ -50,11 +50,12 @@ app.get("/listings/:id",async(req,res)=>{
 })
 
 //create route
-app.post("/listings",async(req,res)=>{
-    const newListing =new Listing(req.body.listing)
+app.post("/listings", async (req, res) => {
+    const newListing = new Listing(req.body.listing);
     await newListing.save();        
-    res.render("listings/index")
-})
+    res.redirect("/listings");
+});
+
 
 //Edit Route
 app.get("/listings/:id/edit", async (req, res) => {
